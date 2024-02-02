@@ -89,6 +89,7 @@ body {
     border-bottom: 1px black solid;
     font-size: 24px;
     background-color: #D4D4D4;
+    color: black;
     -webkit-box-shadow: inset 8px 8px 24px -23px rgba(66, 68, 90, 1);
     -moz-box-shadow: inset 8px 8px 24px -23px rgba(66, 68, 90, 1);
     box-shadow: inset 8px 8px 24px -23px rgba(66, 68, 90, 1);
