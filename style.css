@@ -1,0 +1,122 @@
+html {
+    box-sizing: border-box;
+}
+
+*, ::after, ::before {
+    box-sizing: inherit;
+}
+
+
+body {
+    height: 100vh;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.container__display {
+    height: 20%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 0 12px;
+    font-size: 48px;
+    overflow-x: hidden;
+    font-weight: 300;
+    -webkit-box-shadow: inset 8px 8px 24px -23px rgba(66, 68, 90, 1);
+    -moz-box-shadow: inset 8px 8px 24px -23px rgba(66, 68, 90, 1);
+    box-shadow: inset 8px 8px 24px -23px rgba(66, 68, 90, 1);
+}
+
+@media(max-width: 430px) {
+    .container__display {
+        height: 25%;
+    }
+}
+
+.container {
+    border: 1px black solid;
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    aspect-ratio: 1/1;
+    margin: 25vh auto 0;
+    -webkit-box-shadow: 8px 8px 24px -15px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 8px 8px 24px -15px rgba(66, 68, 90, 1);
+    box-shadow: 8px 8px 24px -15px rgba(66, 68, 90, 1);
+}
+
+@media(max-width: 430px) {
+    .container {
+        margin: 0;
+        aspect-ratio: auto;
+        height: 100%;
+        max-width: none;
+        border: none;
+    }
+}
+
+.buttonsPanel {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    height: 100%;
+    border-top: 1px black solid;
+}
+
+.buttonsPanel :nth-child(16) {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.buttonsPanel :nth-child(1) {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    border-right: 1px black solid;
+}
+
+.buttonsPanel :nth-child(2) {
+    border-right: 1px black solid;
+}
+
+.buttonsPanel :nth-last-child(-n+3) {
+    border-bottom: none;
+}
+
+.digitButton {
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-right: 1px black solid;
+    border-bottom: 1px black solid;
+    font-size: 24px;
+    background-color: #D4D4D4;
+    -webkit-box-shadow: inset 8px 8px 24px -23px rgba(66, 68, 90, 1);
+    -moz-box-shadow: inset 8px 8px 24px -23px rgba(66, 68, 90, 1);
+    box-shadow: inset 8px 8px 24px -23px rgba(66, 68, 90, 1);
+}
+
+.digitButton:hover {
+    cursor: pointer;
+}
+
+.digitButton:active {
+    background-color: #bfbfbf;
+}
+
+.operatorButton {
+    background-color: #3F3F3F;
+    color: white;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-bottom: 1px black solid;
+    font-size: 24px;
+
+}
+
+.operatorButton:hover {
+    cursor: pointer;
+}
+
+.operatorButton:active {
+    background-color: #353535;
+}
