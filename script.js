@@ -4,6 +4,7 @@
     let operation = undefined;
     let isResult = false;
     const addDigits = (digit) => {
+        removeOperatorButtonColor();
         if (currentOperand.includes(".") && digit === ".")
             return;
         if (currentOperand.length >= 16)
@@ -15,7 +16,11 @@
         }
         currentOperand += digit;
     };
-    const setOperator = (operator) => {
+    const setOperator = (operator, element) => {
+        removeOperatorButtonColor();
+        if (operator === element.textContent) {
+            element.classList.add("operatorButton--active");
+        }
         if (previousOpperand !== "") {
             calculate();
             updateDisplay();
@@ -62,13 +67,24 @@
         previousOpperand = "";
         operation = undefined;
         isResult = false;
+        removeOperatorButtonColor();
     };
     const undo = () => {
         currentOperand = currentOperand.slice(0, -1);
     };
+    const removeOperatorButtonColor = () => {
+        const operatorButtons = document.querySelectorAll(".ts-operator");
+        operatorButtons.forEach((button) => {
+            button.classList.remove("operatorButton--active");
+        });
+    };
     const updateDisplay = () => {
         const display = document.querySelector(".ts-display");
         const formattedNumber = Number(currentOperand).toLocaleString("pl-PL");
+        if (isNaN(Number(currentOperand))) {
+            currentOperand = "0";
+            return;
+        }
         display.textContent = formattedNumber;
     };
     const bindButtons = () => {
@@ -82,7 +98,7 @@
         const operatorButtons = document.querySelectorAll(".ts-operator");
         operatorButtons.forEach((operatorButton) => {
             operatorButton.addEventListener("click", () => {
-                setOperator(operatorButton.textContent);
+                setOperator(operatorButton.textContent, operatorButton);
             });
         });
         const clearButton = document.querySelector(".ts-clear");
@@ -99,6 +115,7 @@
         equalsButton.addEventListener("click", () => {
             calculate();
             updateDisplay();
+            removeOperatorButtonColor();
         });
     };
     const init = () => {

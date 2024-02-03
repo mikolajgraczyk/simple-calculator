@@ -5,6 +5,7 @@
   let isResult: boolean = false;
 
   const addDigits = (digit: string) => {
+    removeOperatorButtonColor();
     if (currentOperand.includes(".") && digit === ".") return;
     if (currentOperand.length >= 16) return;
     if ((currentOperand === "0" || isResult) && digit !== ".") {
@@ -16,7 +17,13 @@
     currentOperand += digit;
   };
 
-  const setOperator = (operator: string) => {
+  const setOperator = (operator: string, element: Element) => {
+    removeOperatorButtonColor();
+
+    if (operator === element.textContent) {
+      element.classList.add("operatorButton--active");
+    }
+
     if (previousOpperand !== "") {
       calculate();
       updateDisplay();
@@ -69,16 +76,29 @@
     previousOpperand = "";
     operation = undefined;
     isResult = false;
+    removeOperatorButtonColor();
   };
 
   const undo = () => {
     currentOperand = currentOperand.slice(0, -1);
   };
 
+  const removeOperatorButtonColor = () => {
+    const operatorButtons = document.querySelectorAll(".ts-operator");
+    operatorButtons.forEach((button) => {
+      button.classList.remove("operatorButton--active");
+    });
+  };
+
   const updateDisplay = () => {
     const display = document.querySelector(".ts-display")!;
 
     const formattedNumber = Number(currentOperand).toLocaleString("pl-PL");
+
+    if (isNaN(Number(currentOperand))) {
+      currentOperand = "0";
+      return;
+    }
 
     display.textContent = formattedNumber;
   };
@@ -94,7 +114,7 @@
     const operatorButtons = document.querySelectorAll(".ts-operator");
     operatorButtons.forEach((operatorButton) => {
       operatorButton.addEventListener("click", () => {
-        setOperator(operatorButton.textContent as string);
+        setOperator(operatorButton.textContent as string, operatorButton);
       });
     });
 
@@ -114,6 +134,7 @@
     equalsButton.addEventListener("click", () => {
       calculate();
       updateDisplay();
+      removeOperatorButtonColor();
     });
   };
 
