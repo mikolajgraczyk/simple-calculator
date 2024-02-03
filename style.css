@@ -71,6 +71,7 @@ body {
     grid-template-columns: repeat(4, auto);
     height: 100%;
     border-top: 1px black solid;
+    touch-action: manipulation;
 }
 
 .buttonsPanel :nth-child(16) {
@@ -120,6 +121,7 @@ body {
     background-color: #D4D4D4;
     color: black;
     transition-duration: 0.15s;
+    touch-action: manipulation;
     -webkit-box-shadow: inset 8px 8px 24px -23px rgba(66, 68, 90, 1);
     -moz-box-shadow: inset 8px 8px 24px -23px rgba(66, 68, 90, 1);
     box-shadow: inset 8px 8px 24px -23px rgba(66, 68, 90, 1);
@@ -141,6 +143,7 @@ body {
     border: none;
     border-bottom: 1px black solid;
     font-size: 24px;
+    touch-action: manipulation;
     transition-duration: 0.2s;
 }
 
