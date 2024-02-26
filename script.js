@@ -18,8 +18,8 @@
     };
     const setOperator = (operator, element) => {
         removeOperatorButtonColor();
-        if (operator === element.textContent) {
-            element.classList.add("operatorButton--active");
+        if (operator === $(element).text()) {
+            $(element).addClass("operatorButton--active");
         }
         if (previousOpperand !== "") {
             calculate();
@@ -73,46 +73,39 @@
         currentOperand = currentOperand.slice(0, -1);
     };
     const removeOperatorButtonColor = () => {
-        const operatorButtons = document.querySelectorAll(".ts-operator");
-        operatorButtons.forEach((button) => {
-            button.classList.remove("operatorButton--active");
-        });
+        $(".ts-operator").removeClass("operatorButton--active");
     };
     const updateDisplay = () => {
-        const display = document.querySelector(".ts-display");
+        const display = $(".ts-display");
         const formattedNumber = Number(currentOperand).toLocaleString("pl-PL");
         if (isNaN(Number(currentOperand))) {
             currentOperand = "0";
             return;
         }
-        display.textContent = formattedNumber;
+        $(display).text(formattedNumber);
     };
     const bindButtons = () => {
-        const digitButtons = document.querySelectorAll(".ts-digit");
-        digitButtons.forEach((digitButton) => {
-            digitButton.addEventListener("click", () => {
-                addDigits(digitButton.textContent);
-                updateDisplay();
-            });
+        const digitButtons = $(".ts-digit");
+        digitButtons.on("click", function () {
+            addDigits($(this).text());
+            updateDisplay();
         });
-        const operatorButtons = document.querySelectorAll(".ts-operator");
-        operatorButtons.forEach((operatorButton) => {
-            operatorButton.addEventListener("click", () => {
-                setOperator(operatorButton.textContent, operatorButton);
-            });
+        const operatorButtons = $(".ts-operator");
+        operatorButtons.on("click", function () {
+            setOperator($(this).text(), $(this));
         });
-        const clearButton = document.querySelector(".ts-clear");
-        clearButton.addEventListener("click", () => {
+        const clearButton = $(".ts-clear");
+        clearButton.on("click", function () {
             clear();
             updateDisplay();
         });
-        const undoButton = document.querySelector(".ts-undo");
-        undoButton.addEventListener("click", () => {
+        const undoButton = $(".ts-undo");
+        undoButton.on("click", function () {
             undo();
             updateDisplay();
         });
-        const equalsButton = document.querySelector(".ts-equals");
-        equalsButton.addEventListener("click", () => {
+        const equalsButton = $(".ts-equals");
+        equalsButton.on("click", function () {
             calculate();
             updateDisplay();
             removeOperatorButtonColor();
