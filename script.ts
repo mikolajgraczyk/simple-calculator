@@ -29,16 +29,16 @@
       updateDisplay();
     }
 
-    switch (operator) {
-      case "÷":
-        operation = "/";
-        break;
-      case "x":
-        operation = "*";
-        break;
-      default:
-        operation = operator;
-    }
+    const operations: {
+      [key: string]: string;
+    } = {
+      "÷": "/",
+      x: "*",
+      "+": "+",
+      "-": "-",
+    };
+
+    operation = operations[operator];
 
     previousOpperand = currentOperand;
     currentOperand = "";

@@ -25,16 +25,13 @@
             calculate();
             updateDisplay();
         }
-        switch (operator) {
-            case "÷":
-                operation = "/";
-                break;
-            case "x":
-                operation = "*";
-                break;
-            default:
-                operation = operator;
-        }
+        const operations = {
+            "÷": "/",
+            x: "*",
+            "+": "+",
+            "-": "-",
+        };
+        operation = operations[operator];
         previousOpperand = currentOperand;
         currentOperand = "";
     };
